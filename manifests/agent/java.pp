@@ -42,6 +42,10 @@
 #   Whether puppet should manage the newrelic.yml config file or not
 #   Default: true
 #
+# [*manage_unzip*]
+#   Whether puppet should manage the unzip package or not
+#   Default: true
+#
 class newrelic::agent::java (
   String  $license_key,
   String  $package_source_url            = 'https://oss.sonatype.org/content/repositories/releases/com/newrelic/agent/java/newrelic-java/',
@@ -50,12 +54,15 @@ class newrelic::agent::java (
   String  $newrelic_application_name     = 'webapp',
   String  $agent_user                    = 'root',
   String  $agent_group                   = 'root',
-  Boolean $manage_config                 = true
+  Boolean $manage_config                 = true,
+  Boolean $manage_unzip                  = true,
 ){
 
   # == Package Installation
-  package { 'unzip':
-    ensure => installed
+  if $manage_unzip {
+    package { 'unzip':
+      ensure => installed
+    }
   }
 
   # == Newrelic java agent fetch/installation
