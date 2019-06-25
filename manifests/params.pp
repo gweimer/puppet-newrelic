@@ -21,6 +21,7 @@ class newrelic::params {
   case $facts['os']['family'] {
     'RedHat': {
       $manage_repo         = true
+      $manage_unzip        = true
       $server_package_name = 'newrelic-sysmond'
       $server_service_name = 'newrelic-sysmond'
       $php_package_name    = 'newrelic-php5'
@@ -46,6 +47,7 @@ class newrelic::params {
 
     'Debian': {
       $manage_repo                 = true
+      $manage_unzip                = true
       $server_package_name         = 'newrelic-sysmond'
       $server_service_name         = 'newrelic-sysmond'
       $php_package_name            = 'newrelic-php5'
@@ -63,6 +65,7 @@ class newrelic::params {
 
     'Windows': {
       $manage_repo             = false
+      $manage_unzip            = false
       $bitness                 = regsubst($facts['os']['architecture'],'^x([\d]{2})','\1')
       $server_package_name     = 'New Relic Server Monitor'
       $server_service_name     = 'nrsvrmon'
