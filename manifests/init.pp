@@ -28,6 +28,10 @@
 #   Whether to install the NewRelic OS repositories
 #   Default: Varies depending on OS (Boolean)
 #
+# [*manage_unzip*]
+#   Whether to install the unzip package
+#   Default: true (Boolean)
+#
 # === Examples
 #
 # class { '::newrelic':
@@ -53,6 +57,7 @@ class newrelic (
   Boolean $enable_server       = false,
   Boolean $enable_php_agent    = false,
   Boolean $enable_dotnet_agent = false,
+  Boolean $manage_unzip        = $::newrelic::params::manage_unzip,
 ) inherits newrelic::params {
 
   if length($license_key) != 40 {
