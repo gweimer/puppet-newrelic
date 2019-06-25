@@ -19,6 +19,7 @@ describe 'newrelic::agent::java', type: :class do
     {
       license_key: '1234567890qwerty',
       manage_config: true,
+      manage_unzip: true,
     }
   end
 
